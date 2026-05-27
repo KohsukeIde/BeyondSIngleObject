@@ -1,20 +1,26 @@
-# BeyondSingleObject: Learning 3D Relations with Large Language Models
+<div align="center">
 
-Kohsuke Ide, Ryousuke Yamada, Yue Qiu, Xianzheng Ma, Yoshihiro Fukuhara,
-Hirokatsu Kataoka, Yutaka Satoh
+# Beyond Single Object: Learning 3D Relations with Large Language Models
 
-CVPR 2026 Findings
+<p align="center">
+  <a href="https://kohsukeide.github.io/BeyondSingleObject/"><img src="https://img.shields.io/badge/Project-Page-orange?style=flat&logo=googlechrome&logoColor=white" alt="Project Page"></a>
+  <a href="https://kohsukeide.github.io/BeyondSingleObject/#citation"><img src="https://img.shields.io/badge/Paper-CVPR%202026%20Findings-A42C25?style=flat&logo=ieee&logoColor=white" alt="Paper"></a>
+  <a href="https://huggingface.co/datasets/idekoh/BeyondSingleObject"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-MO3D-FFD21E?style=flat" alt="Dataset"></a>
+  <a href="https://huggingface.co/idekoh/Multi-3DLLM"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Model-Multi--3DLLM-FFD21E?style=flat" alt="Model"></a>
+  <a href="#-license"><img src="https://img.shields.io/badge/License-Apache%202.0-blue?style=flat" alt="License"></a>
+</p>
 
-[[Project Page](https://kohsukeide.github.io/BeyondSingleObject/)]
-[[Citation](#citation)]
-[[Data](https://huggingface.co/datasets/idekoh/BeyondSingleObject)]
-[[Weights](https://huggingface.co/idekoh/Multi-3DLLM)]
+[Kohsuke Ide](https://kohsukeide.github.io/), [Ryousuke Yamada](https://ryosuke-yamada.github.io/), [Yue Qiu](https://qiuyue1993.github.io/qiuyue.github.com/), [Xianzheng Ma](https://xianzhengma.github.io/), [Yoshihiro Fukuhara](https://gatheluck.net/), [Hirokatsu Kataoka](https://hirokatsukataoka.net/), [Yutaka Satoh](https://satoh-yutaka.github.io/)
 
-![BeyondSingleObject teaser](assets/teaser.png)
+**CVPR 2026 Findings**
 
-## Overview
+<img src="assets/teaser.png" alt="Beyond Single Object teaser">
 
-BeyondSingleObject extends PointLLM-style object-centric 3D-LLMs to relational
+</div>
+
+## 📖 Overview
+
+**Beyond Single Object** extends PointLLM-style object-centric 3D-LLMs to relational
 reasoning over multiple point clouds. The release includes:
 
 - **MO3D**: multi-object positional, comparative, and holistic QA.
@@ -33,7 +39,12 @@ scripts/eval/eval_nlp.sh
 scripts/eval/eval_modelnet.sh
 ```
 
-## Installation
+## 🚀 Getting Started
+
+<details>
+<summary><b>📦 Installation</b></summary>
+
+<br>
 
 ```bash
 git clone https://github.com/KohsukeIde/BeyondSingleObject.git
@@ -43,7 +54,12 @@ conda activate beyond-single-object
 pip install -e .
 ```
 
-## Data Preparation
+</details>
+
+<details>
+<summary><b>🗂️ Data Preparation</b></summary>
+
+<br>
 
 Download the released annotations and ModelNet40 test file:
 
@@ -115,7 +131,12 @@ The ModelNet40 evaluation follows the PointLLM convention and uses
 PointLLM-compatible Python pickle for `scripts/eval/eval_modelnet.sh`; load it
 only from a trusted source.
 
-## Weight Preparation
+</details>
+
+<details>
+<summary><b>⚖️ Weight Preparation</b></summary>
+
+<br>
 
 Download the released checkpoints:
 
@@ -139,7 +160,14 @@ checkpoints/
 `pointllm-stage1` is the PointLLM stage-1 checkpoint used only when running
 joint fine-tuning.
 
-## Training
+</details>
+
+## 🏋️ Training
+
+<details>
+<summary><b>Joint fine-tuning recipe</b></summary>
+
+<br>
 
 Run the default 8-GPU joint fine-tuning recipe:
 
@@ -161,7 +189,14 @@ DRY_RUN=1 scripts/train/train_joint.sh
 For multi-node training, set `NNODES`, `GPUS_PER_NODE`, `NODE_RANK`, and
 `MASTER_ADDR` before running the same script.
 
-## Inference
+</details>
+
+## 🔮 Inference
+
+<details>
+<summary><b>MO3D / Shape Mating / Change Captioning</b></summary>
+
+<br>
 
 MO3D:
 
@@ -206,7 +241,14 @@ The released `data/change_captioning/eval_subset.json` contains a fixed
 200-sample LLM-evaluation subset with balanced verification and delta-caption
 examples.
 
-## Evaluation
+</details>
+
+## 📊 Evaluation
+
+<details>
+<summary><b>LLM-based metrics, text-overlap metrics, and ModelNet40</b></summary>
+
+<br>
 
 LLM-based metrics use the OpenAI API. The released evaluators use
 `gpt-4o-mini-2024-07-18`; record the judge model and date when reporting
@@ -264,21 +306,35 @@ scripts/eval/eval_modelnet.sh
 Repeat `(NUM_OBJECTS, TARGET_POSITION) = (1,1), (2,1), (2,2), (3,1), (3,2),
 (3,3)` for the full table.
 
-## Citation
+</details>
+
+## 🔗 Citation
+
+If you find our work useful, please consider citing:
 
 ```bibtex
 @inproceedings{ide2026beyondsingleobject,
-  title={BeyondSingleObject: Learning 3D Relations with Large Language Models},
+  title={Beyond Single Object: Learning 3D Relations with Large Language Models},
   author={Ide, Kohsuke and Yamada, Ryousuke and Qiu, Yue and Ma, Xianzheng and Fukuhara, Yoshihiro and Kataoka, Hirokatsu and Satoh, Yutaka},
   booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Findings},
   year={2026}
 }
 ```
 
-## Acknowledgements / License
+## 👏 Acknowledgements
 
-This project builds on PointLLM, Point-BERT, Vicuna, Objaverse/Cap3D,
-ShapeTalk, Thingi10K, and Neural Shape Mating. Newly authored code is released
-under Apache-2.0 unless noted otherwise. Components, annotations, checkpoints,
-and datasets derived from upstream projects retain their original licenses and
-terms.
+This project builds on the following excellent works:
+
+- [PointLLM](https://github.com/InternRobotics/PointLLM): our codebase and Multi-3DLLM are built upon PointLLM.
+- [Point-BERT](https://github.com/lulutang0608/Point-BERT): point-cloud transformer backbone.
+- [Vicuna](https://github.com/lm-sys/FastChat): the LLM backbone used by PointLLM.
+- [Objaverse](https://objaverse.allenai.org) / [Cap3D](https://github.com/crockwell/Cap3D): 3D assets and captions used to build MO3D.
+- [ShapeTalk / ChangeIt3D](https://changeit3d.github.io/): source shapes and language for Change Captioning.
+- [Thingi10K](https://ten-thousand-models.appspot.com/): meshes used for Shape Mating.
+- [Neural Shape Mating](https://neural-shape-mating.github.io/): the pairwise shape-mating formulation.
+
+## 📄 License
+
+Newly authored code is released under Apache-2.0 unless noted otherwise.
+Components, annotations, checkpoints, and datasets derived from upstream
+projects retain their original licenses and terms.
