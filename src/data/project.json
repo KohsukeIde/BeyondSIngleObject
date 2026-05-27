@@ -1,0 +1,243 @@
+{
+  "title": "Beyond Single Object: Learning 3D Relations with Large Language Models",
+  "shortTitle": "Beyond Single Object",
+  "subtitle": "Multi-3DLLM: A Framework for Multi-Object 3D Understanding",
+  "authors": [
+    {
+      "name": "Kohsuke Ide",
+      "url": "https://kohsukeide.github.io/",
+      "affiliations": [0, 1]
+    },
+    {
+      "name": "Ryousuke Yamada",
+      "url": "https://ryosuke-yamada.github.io/",
+      "affiliations": [0, 2]
+    },
+    {
+      "name": "Yue Qiu",
+      "url": "https://qiuyue1993.github.io/qiuyue.github.com/",
+      "affiliations": [0]
+    },
+    {
+      "name": "Xianzheng Ma",
+      "url": "https://xianzhengma.github.io/",
+      "affiliations": [3]
+    },
+    {
+      "name": "Yoshihiro Fukuhara",
+      "url": "https://gatheluck.net/",
+      "affiliations": [0]
+    },
+    {
+      "name": "Hirokatsu Kataoka",
+      "url": "https://hirokatsukataoka.net/",
+      "affiliations": [0, 3]
+    },
+    {
+      "name": "Yutaka Satoh",
+      "url": "https://satoh-yutaka.github.io/",
+      "affiliations": [0, 1]
+    }
+  ],
+  "affiliations": [
+    {
+      "name": "AIST",
+      "fullName": "National Institute of Advanced Industrial Science and Technology",
+      "url": "https://www.aist.go.jp/index_en.html"
+    },
+    {
+      "name": "University of Tsukuba",
+      "fullName": "University of Tsukuba",
+      "url": "https://www.tsukuba.ac.jp/en/"
+    },
+    {
+      "name": "FunAI Lab",
+      "fullName": "University of Technology Nuremberg - Fundamental AI Lab",
+      "url": "https://fundamentalailab.github.io/"
+    },
+    {
+      "name": "University of Oxford",
+      "fullName": "Visual Geometry Group, University of Oxford",
+      "url": "https://www.robots.ox.ac.uk/~vgg/"
+    }
+  ],
+  "links": {
+    "paper": "#",
+    "arxiv": "#",
+    "code": "https://github.com/KohsukeIde/BeyondSingleObject",
+    "models": "https://huggingface.co/idekoh/Multi-3DLLM",
+    "dataset": "https://huggingface.co/datasets/idekoh/BeyondSingleObject"
+  },
+  "abstract": {
+    "problem": "Existing 3D Large Language Models (3D-LLMs) focus on single-object/scene description, struggling with detailed, inter-object comparison.",
+    "solution": "We propose a framework for detailed object-level reasoning across multiple objects with three components: (1) MO3D dataset for multi-object comparison, (2) Multi-3DLLM with Patch-Interaction Transformer, and (3) Mini-apps benchmarks.",
+    "results": "Multi-3DLLM trained on our mixture data learns geometric reasoning, surpasses all baselines on MO3D, and provides positive transfer to single-object classification.",
+    "scope": "We commit to the LLM as a generator that reasons over geometry — comparing, fitting, and describing changes across objects — rather than a mere language interface to a fixed perception model.",
+    "message": [
+      "A shape is understood through its relations.",
+      "In 3D, those relations are geometric.",
+      "Multi-3DLLM compares, fits, and describes changes across point clouds."
+    ]
+  },
+  "contributions": [
+    {
+      "title": "MO3D Dataset",
+      "description": "Large-scale instruction dataset with ~70k high-quality QA pairs for multi-object 3D comparison",
+      "highlights": [
+        "Multi-object comparison tasks",
+        "Positional, Comparative, and Holistic reasoning",
+        "Built on Objaverse-Cap3D with GPT-4 generation",
+        "Three task types with balanced sampling"
+      ],
+      "icon": "database"
+    },
+    {
+      "title": "Multi-3DLLM Architecture",
+      "description": "Novel architecture with Patch-Interaction Transformer for cross-object geometric reasoning",
+      "highlights": [
+        "Patch-level cross-object interaction",
+        "Preserves fine-grained local geometry",
+        "Minimal modification to existing 3D-LLMs",
+        "Efficient multi-object processing"
+      ],
+      "icon": "model"
+    },
+    {
+      "title": "Positive Transfer",
+      "description": "Multi-task training strengthens foundational skills without catastrophic forgetting",
+      "highlights": [
+        "Zero-shot classification: 50.7% → 54.2%",
+        "Outperforms specialized models on Mini-Apps",
+        "No catastrophic forgetting on single-object tasks",
+        "Enhanced geometric understanding"
+      ],
+      "icon": "chart"
+    }
+  ],
+  "benchmarks": {
+    "mo3d": {
+      "description": "Multi-Object in 3D comparison dataset with three task types",
+      "tasks": [
+        {
+          "name": "Positional",
+          "description": "Understanding spatial relationships between objects"
+        },
+        {
+          "name": "Comparative",
+          "description": "Comparing properties of multiple objects"
+        },
+        {
+          "name": "Holistic",
+          "description": "Binary Yes/No judgment synthesizing information"
+        }
+      ]
+    },
+    "shapeMating": {
+      "description": "Geometric compatibility task requiring fine-grained shape understanding",
+      "tasks": [
+        {
+          "name": "Selection",
+          "description": "Identify which pair of objects can physically fit together"
+        },
+        {
+          "name": "Reasoning",
+          "description": "Explain why objects are compatible or incompatible"
+        },
+        {
+          "name": "Verification",
+          "description": "Binary classification of geometric compatibility"
+        }
+      ]
+    },
+    "changeCaptioning": {
+      "description": "Edit-grounded understanding task for describing geometric changes",
+      "tasks": [
+        {
+          "name": "Verification",
+          "description": "Determine if instruction matches the geometric edit"
+        },
+        {
+          "name": "Delta Caption",
+          "description": "Generate natural language description of the change"
+        }
+      ]
+    }
+  },
+  "results": {
+    "mo3d": {
+      "ours": {
+        "positional": 56.3,
+        "comparative": 33.8,
+        "holistic": 81.7,
+        "overall": 57.2
+      },
+      "baselines": {
+        "PointLLM": {
+          "positional": 15.6,
+          "comparative": 4.2,
+          "holistic": 66.0,
+          "overall": 33.4
+        },
+        "ShapeLLM": {
+          "positional": 22.6,
+          "comparative": 11.2,
+          "holistic": 49.8,
+          "overall": 34.6
+        },
+        "MiniGPT-3D": {
+          "positional": 20.1,
+          "comparative": 7.8,
+          "holistic": 62.4,
+          "overall": 35.1
+        },
+        "LLaVA-7B": {
+          "positional": 25.8,
+          "comparative": 11.7,
+          "holistic": 61.1,
+          "overall": 41.9
+        }
+      }
+    },
+    "shapeMating": {
+      "ours": {
+        "selection": 37.1,
+        "reasoning": 36.8,
+        "verify": 51.2
+      }
+    },
+    "changeCaptioning": {
+      "ours": {
+        "verify": 48.0,
+        "deltaCaption": 49.6,
+        "overall": 51.0
+      }
+    },
+    "zeroShot": {
+      "ours": 54.2,
+      "oursWithoutPIT": 53.4,
+      "pointllm": 50.7
+    }
+  },
+  "citation": {
+    "bibtex": "@inproceedings{ide2026beyond,\n  title={Beyond Single Object: Learning 3D Relations with Large Language Models},\n  author={Ide, Kohsuke and Yamada, Ryousuke and Qiu, Yue and Ma, Xianzheng and Fukuhara, Yoshihiro and Kataoka, Hirokatsu and Satoh, Yutaka},\n  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Findings},\n  year={2026}\n}"
+  },
+  "seo": {
+    "description": "Multi-3DLLM: A novel framework for multi-object 3D understanding and comparison. Introducing MO3D dataset with 70k examples and Mini-Apps benchmarks for geometric reasoning.",
+    "keywords": [
+      "3D large language models",
+      "multi-object understanding",
+      "point cloud comparison",
+      "geometric reasoning",
+      "3D vision-language models",
+      "shape mating",
+      "change captioning",
+      "MO3D dataset",
+      "Multi-3DLLM",
+      "3D-LLM",
+      "point cloud understanding",
+      "3D object comparison",
+      "patch interaction transformer"
+    ],
+    "ogImage": "/beyond-single-object-og.jpg"
+  }
+}

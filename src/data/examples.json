@@ -1,0 +1,96 @@
+{
+  "tasks": [
+    {
+      "key": "mo3d",
+      "label": "MO3D",
+      "blurb": "Multi-object comparison — positional, comparative, and holistic reasoning across several objects.",
+      "objectLabels": [
+        "Object 1",
+        "Object 2",
+        "Object 3"
+      ],
+      "examples": [
+        {
+          "id": "ex01",
+          "n": 3,
+          "question": "Do all objects have legs?",
+          "answer": "No. The first object has two legs, the second has three legs, and the third has a base without traditional legs."
+        },
+        {
+          "id": "ex02",
+          "n": 3,
+          "question": "Do all objects have a roof?",
+          "answer": "No. Only the second and third objects have a roof, while the first object does not."
+        },
+        {
+          "id": "ex03",
+          "n": 3,
+          "question": "Do all objects have a vertical component in their design?",
+          "answer": "Yes. The castle has towers, the tent has poles, and the flag has a pole."
+        }
+      ]
+    },
+    {
+      "key": "shape_mating",
+      "label": "Shape Mating",
+      "blurb": "Geometric compatibility — which parts can physically fit together, and why.",
+      "objectLabels": [
+        "Object 1",
+        "Object 2",
+        "Object 3"
+      ],
+      "examples": [
+        {
+          "id": "ex01",
+          "n": 3,
+          "question": "Which pair mates under rigid alignment? (1,2) / (1,3) / (2,3) / None",
+          "answer": "Objects (1, 2).",
+          "reason": "The planar surfaces are inverse along the cut, so alignment produces a continuous, gap-minimized joint."
+        },
+        {
+          "id": "ex02",
+          "n": 3,
+          "question": "Which pair can be joined without collision? (1,2) / (1,3) / (2,3) / None",
+          "answer": "Objects (2, 3).",
+          "reason": "The ribbed cut surfaces act as male/female counterparts, so the joint closes cleanly."
+        },
+        {
+          "id": "ex03",
+          "n": 3,
+          "question": "Which pair can be aligned to mate? (1,2) / (1,3) / (2,3) / None",
+          "answer": "Objects (1, 2).",
+          "reason": "The curved mating face on one side is the negative of the other, so the faces seat smoothly."
+        }
+      ]
+    },
+    {
+      "key": "change_captioning",
+      "label": "Change Captioning",
+      "blurb": "Edit-grounded understanding — describe the geometric change between two shapes.",
+      "objectLabels": [
+        "First shape",
+        "Second shape"
+      ],
+      "examples": [
+        {
+          "id": "ex01",
+          "n": 2,
+          "question": "Given the second shape, what geometric edit turns it into the first shape?",
+          "answer": "Add arms, make the seat thicker, include four legs with a horizontal bar between the front ones, and create a large oblong hole in the seat back."
+        },
+        {
+          "id": "ex02",
+          "n": 2,
+          "question": "Given the second shape, what geometric edit turns it into the first shape?",
+          "answer": "Make the top square, increase its thickness and width, reduce the length, and make the center leg shorter while deepening the overall shape."
+        },
+        {
+          "id": "ex03",
+          "n": 2,
+          "question": "Given the second shape, what geometric edit turns it into the first shape?",
+          "answer": "Make the legs more slender, enlarge the wheels, add armrests, increase the thickness of the seating, and round the backing."
+        }
+      ]
+    }
+  ]
+}
