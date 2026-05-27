@@ -1,0 +1,42 @@
+task: joint
+model:
+  base_checkpoint: checkpoints/pointllm-stage1
+  use_cvpr_model: true
+  relation_mode: patch
+  relation_use_adaln: false
+  relation_patch_gamma: 1.0
+data:
+  data_path: data/point_clouds
+  datasets:
+    - name: pointllm_caption
+      anno_path: data/pointllm/PointLLM_brief_description_660K_filtered.json
+      prob: 0.26
+    - name: pointllm_instruction
+      anno_path: data/pointllm/PointLLM_complex_instruction_70K.json
+      prob: 0.08
+    - name: pointllm_multi_instruction
+      anno_path: data/pointllm/complex_instruction_stage2_multi_pc_70K_gpt.json
+      prob: 0.06
+    - name: mo3d
+      anno_path: data/mo3d/train.json
+      prob: 0.22
+    - name: shape_mating
+      anno_path: data/shape_mating/train.json
+      prob: 0.12
+    - name: change_captioning
+      anno_path: data/change_captioning/train.json
+      prob: 0.26
+  epoch_size: 260000
+  pointnum: 8192
+  use_color: true
+training:
+  output_dir: outputs/joint
+  num_train_epochs: 2
+  per_device_train_batch_size: 14
+  gradient_accumulation_steps: 1
+  learning_rate: 1.5e-5
+  warmup_ratio: 0.03
+  lr_scheduler_type: cosine
+  bf16: true
+  default_gpus: 8
+  fsdp: full_shard auto_wrap

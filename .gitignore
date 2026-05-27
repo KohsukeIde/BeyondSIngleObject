@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environments
+.env
+.venv/
+venv/
+env/
+
+# Experiment outputs
+outputs/
+logs/
+wandb/
+checkpoints/
+*.out
+*.err
+
+# Large data and model artifacts
+data/
+!pointllm/data/
+!pointllm/data/**
+pointllm/data/**/__pycache__/
+pointllm/data/**/*.py[cod]
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+*.tar
+*.tar.gz
+*.zip
+
+# Local notebooks and OS files
+.ipynb_checkpoints/
+.DS_Store
+
+# IDE (do not commit)
+.cursor/

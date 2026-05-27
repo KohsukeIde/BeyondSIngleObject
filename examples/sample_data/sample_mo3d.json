@@ -1,0 +1,38 @@
+[
+  {
+    "id": "sample_mo3d_0001",
+    "task_type": "comparative",
+    "object_ids": [
+      "object_1.csv",
+      "object_2.csv"
+    ],
+    "conversations": [
+      {
+        "from": "human",
+        "value": "<point> <point>\nHow do the shapes of the first and second objects differ?"
+      },
+      {
+        "from": "gpt",
+        "value": "The first object is a compact cube-like shape, while the second object is elongated along one axis."
+      }
+    ]
+  },
+  {
+    "id": "sample_mo3d_0002",
+    "task_type": "holistic",
+    "object_ids": [
+      "object_1.csv",
+      "object_3.csv"
+    ],
+    "conversations": [
+      {
+        "from": "human",
+        "value": "<point> <point>\nDo all objects have a similar elongated structure?"
+      },
+      {
+        "from": "gpt",
+        "value": "No. The first object is compact, whereas the second object is elongated."
+      }
+    ]
+  }
+]

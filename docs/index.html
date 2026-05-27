@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BeyondSingleObject</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17202a;
+      --muted: #596579;
+      --line: #d9e0e8;
+      --accent: #1f6f8b;
+      --soft: #eef6f8;
+      --paper: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.55;
+    }
+    header {
+      min-height: 92vh;
+      display: grid;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      background: #f7fafb;
+    }
+    .hero {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 48px 0 40px;
+    }
+    h1 {
+      max-width: 980px;
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 5vw, 4.4rem);
+      line-height: 1.03;
+      letter-spacing: 0;
+    }
+    .venue {
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .authors {
+      max-width: 900px;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 24px 0 28px;
+    }
+    .links a {
+      color: var(--ink);
+      text-decoration: none;
+      border: 1px solid var(--line);
+      background: white;
+      padding: 9px 14px;
+      border-radius: 6px;
+      font-weight: 650;
+    }
+    .teaser {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+      display: block;
+    }
+    main {
+      width: min(1040px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 44px 0 72px;
+    }
+    section {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    h2 {
+      margin: 0 0 12px;
+      font-size: 1.55rem;
+      letter-spacing: 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .item {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      background: var(--soft);
+    }
+    .item strong { display: block; margin-bottom: 6px; }
+    pre {
+      overflow-x: auto;
+      padding: 16px;
+      border-radius: 8px;
+      background: #101820;
+      color: #eef6f8;
+    }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    footer {
+      color: var(--muted);
+      padding: 28px 0;
+    }
+    @media (max-width: 760px) {
+      header { min-height: auto; }
+      .hero { width: min(100% - 24px, 1120px); padding-top: 32px; }
+      main { width: min(100% - 24px, 1040px); }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <div class="venue">CVPR 2026 Findings</div>
+      <h1>BeyondSingleObject: Learning 3D Relations with Large Language Models</h1>
+      <p class="authors">Kohsuke Ide, Ryousuke Yamada, Yue Qiu, Xianzheng Ma, Yoshihiro Fukuhara, Hirokatsu Kataoka, Yutaka Satoh</p>
+      <div class="links">
+        <a href="https://github.com/KohsukeIde/BeyondSingleObject">Code</a>
+        <a href="#citation">Citation</a>
+        <a href="https://huggingface.co/datasets/idekoh/BeyondSingleObject">Data</a>
+        <a href="https://huggingface.co/idekoh/Multi-3DLLM">Weights</a>
+      </div>
+      <img class="teaser" src="teaser.png" alt="Overview of multi-object 3D comparison, Shape Mating, Change Captioning, and Multi-3DLLM.">
+    </div>
+  </header>
+  <main>
+    <section>
+      <h2>Abstract</h2>
+      <p>BeyondSingleObject addresses multi-object 3D reasoning with MO3D, a PointLLM-based Multi-3DLLM architecture, and two application-driven mini-app benchmarks: Shape Mating and Change Captioning.</p>
+    </section>
+    <section>
+      <h2>Contributions</h2>
+      <div class="grid">
+        <div class="item"><strong>MO3D</strong>Instruction data for positional, comparative, and holistic multi-object 3D QA.</div>
+        <div class="item"><strong>Multi-3DLLM</strong>A Patch-Interaction Transformer that models inter-object and intra-object patch relations.</div>
+        <div class="item"><strong>Mini-Apps</strong>Shape Mating and Change Captioning benchmarks for geometric understanding.</div>
+      </div>
+    </section>
+    <section>
+      <h2>Quick Start</h2>
+      <pre><code>git clone https://github.com/KohsukeIde/BeyondSingleObject.git
+cd BeyondSingleObject
+conda env create -f environment.yml
+conda activate beyond-single-object
+pip install -e .
+
+# Prepare data and weights as described in the README, then run:
+MODEL_PATH=checkpoints/multi-3dllm ANNO_PATH=data/mo3d/test.json DATA_PATH=data/point_clouds scripts/eval/infer.sh</code></pre>
+    </section>
+    <section id="citation">
+      <h2>Citation</h2>
+      <pre><code>@inproceedings{ide2026beyondsingleobject,
+  title={BeyondSingleObject: Learning 3D Relations with Large Language Models},
+  author={Ide, Kohsuke and Yamada, Ryousuke and Qiu, Yue and Ma, Xianzheng and Fukuhara, Yoshihiro and Kataoka, Hirokatsu and Satoh, Yutaka},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Findings},
+  year={2026}
+}</code></pre>
+    </section>
+    <footer>Project page for the CVPR 2026 Findings release.</footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,15 @@
+task: change_captioning
+model_path: checkpoints/multi-3dllm
+anno_path: data/change_captioning/test.json
+data_path: data/point_clouds
+output_dir: outputs/change_captioning_eval
+relation_mode: patch
+pointnum: 8192
+max_new_tokens: 96
+temperature: 0.0
+repetition_penalty: 1.15
+no_repeat_ngram_size: 5
+dedupe_delta_output: true
+max_delta_output_clauses: 6
+multi_turn: true
+score_verify_options: true

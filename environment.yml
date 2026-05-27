@@ -1,0 +1,23 @@
+name: beyond-single-object
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pip
+  - numpy
+  - pytorch>=2.0
+  - torchvision
+  - pytorch-cuda=12.1
+  - pip:
+      - -e ".[core,train,eval]"
+      - timm==0.4.12
+      - ftfy==6.0.1
+      - regex
+      - plyfile
+      - shortuuid
+      - markdown2[all]
+      - gradio
+      - fastapi
+      - uvicorn

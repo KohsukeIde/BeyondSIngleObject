@@ -1,0 +1,11 @@
+task: shape_mating
+model_path: checkpoints/multi-3dllm
+anno_path: data/shape_mating/test.json
+data_path: data/point_clouds
+output_dir: outputs/shape_mating_eval
+relation_mode: patch
+pointnum: 8192
+max_new_tokens: 160
+temperature: 0.0
+select_one_mode: true
+multi_turn: true

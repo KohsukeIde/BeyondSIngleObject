@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel", "pip"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "beyond-single-object"
+version = "0.1.0"
+description = "Multi-object 3D relation learning with PointLLM-based 3D-LLMs."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "Apache-2.0"
+authors = [
+  {name = "Kohsuke Ide"},
+  {name = "Ryousuke Yamada"},
+  {name = "Yue Qiu"},
+  {name = "Xianzheng Ma"},
+  {name = "Yoshihiro Fukuhara"},
+  {name = "Hirokatsu Kataoka"},
+  {name = "Yutaka Satoh"},
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = []
+
+[project.optional-dependencies]
+core = [
+  "numpy",
+  "torch>=2.0",
+  "transformers",
+  "tqdm",
+  "einops",
+  "easydict",
+  "h5py",
+  "matplotlib",
+  "scikit-learn",
+  "sentencepiece",
+  "termcolor",
+  "accelerate",
+  "peft",
+  "open3d",
+]
+train = [
+  "deepspeed",
+  "wandb",
+  "ninja",
+]
+eval = [
+  "aiohttp",
+  "openai",
+  "rouge-score",
+  "nltk",
+]
+dev = [
+  "pytest",
+  "ruff",
+]
+
+[tool.setuptools.packages.find]
+include = ["pointllm*"]
+exclude = ["assets*", "configs*", "data*", "docs*", "examples*", "scripts*", "tools*"]
