@@ -1,8 +1,0 @@
-BeyondSingleObject / Multi-3DLLM
-
-This repository contains code for the CVPR 2026 Findings paper:
-"BeyondSingleObject: Learning 3D Relations with Large Language Models".
-
-Portions of this codebase and the public data recipe are derived from or use
-PointLLM and related open-source projects. See the README acknowledgements for
-upstream project links, licenses, and dataset terms.

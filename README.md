@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="assets/hero.jpg" alt="Beyond Single Object — multi-object point-cloud scene" width="420">
-
 # Beyond Single Object: Learning 3D Relations with Large Language Models
 
 <p align="center">
